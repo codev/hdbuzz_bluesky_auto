@@ -85,14 +85,14 @@ def create_bluesky_post(entry, hashtags):
 def main():
     try:
         # Initialize Gemini
-        model = setup_gemini()
+        #model = setup_gemini()
 
         # Initialize Bluesky client
         client = Client()
         client.login(os.environ['BLUESKY_HANDLE'], os.environ['BLUESKY_PASSWORD'])
 
         # RSS feed URL - replace with your desired RSS feed
-        rss_url = "https://www.theguardian.com/environment/climate-crisis/rss"
+        rss_url = "https://en.hdbuzz.net/feed"
 
         # Load previously posted entries
         posted_entries = load_posted_entries()
@@ -109,11 +109,7 @@ def main():
                 continue
 
             # Generate hashtags using Gemini
-            hashtags = generate_hashtags_with_gemini(
-                model,
-                entry.title,
-                entry.get('description', '')
-            )
+            hashtags = ''
 
             # Create post content
             content = create_bluesky_post(entry, hashtags)
